@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          curl -L --fail -o src.zip "https://dl.legacylauncher.ru/legacy/source"
+          curl -L --fail -A "Mozilla/5.0" -o src.zip "https://dl.legacylauncher.ru/legacy/source"
           unzip -qo src.zip -d .tmp
           # Если в архиве одна папка — берём её, иначе .tmp
           shopt -s nullglob dotglob; e=(.tmp/*)
