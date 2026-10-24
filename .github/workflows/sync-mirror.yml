@@ -6,20 +6,23 @@ on:
     - cron: '0 */6 * * *'
   workflow_dispatch:
     # Позволяет запускать синхронизацию вручную кнопкой в интерфейсе GitHub
+permissions:
+  contents: write
+
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout mirror repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Download and unpack latest source
         run: |
           mkdir -p /tmp/launcher-src
-          curl -L "https://dl.legacylauncher.ru/legacy/source" -o /tmp/launcher.zip
+          curl -fSL "https://dl.legacylauncher.ru/legacy/source" -o /tmp/launcher.zip
           unzip -o /tmp/launcher.zip -d /tmp/launcher-src
           find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' ! -name '.github' -exec rm -rf {} +
           cp -r /tmp/launcher-src/* .
