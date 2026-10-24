@@ -20,7 +20,7 @@ jobs:
 
       - name: Download archive
         run: |
-          curl -fsSL -A "Mozilla/5.0" -o src.zip "https://dl.legacylauncher.ru/legacy/source"
+          curl -fsSL -A "Mozilla/5.0" -o src.zip "https://dl.llaun.ch/legacy/source"
 
       - name: Replace sources
         run: |
